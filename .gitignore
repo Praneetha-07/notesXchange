@@ -1,0 +1,29 @@
+# Node modules
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Environment variables (IMPORTANT)
+.env
+backend/.env
+
+# Logs
+*.log
+
+# Build files
+dist/
+build/
+frontend/build/
+frontend/dist/
+
+# Uploads (ignore files but keep folder)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
