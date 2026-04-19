@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import api from "../api/axios";
 import NoteCard from "../components/NoteCard";
+import { useAuth } from "../context/AuthContext";
 
 const s = {
   page: { maxWidth: "860px", margin: "0 auto", padding: "1.5rem 1.25rem" },
@@ -145,6 +146,8 @@ export default function BrowsePage() {
   const [branch, setBranch] = useState("");
   const [sort, setSort] = useState("votes");
 
+  const { user } = useAuth();
+
   const fetchNotes = useCallback(async () => {
     setLoading(true);
     setError("");
@@ -172,6 +175,10 @@ export default function BrowsePage() {
   const handleVoteUpdate = (updated) => {
     setNotes((prev) => prev.map((n) => (n._id === updated._id ? updated : n)));
   };
+
+  const myNotes = notes.filter((note) => note.uploadedBy?._id === user?._id);
+
+  const otherNotes = notes.filter((note) => note.uploadedBy?._id !== user?._id);
 
   return (
     <div style={s.page}>
@@ -258,7 +265,23 @@ export default function BrowsePage() {
         </div>
       ) : (
         <div style={s.list}>
-          {notes.map((note) => (
+          {/* ✅ Notes you added */}
+          {user && myNotes.length > 0 && (
+            <>
+              <h3 style={{ margin: "10px 0" }}>Notes you added</h3>
+              {myNotes.map((note) => (
+                <NoteCard
+                  key={note._id}
+                  note={note}
+                  onVoteUpdate={handleVoteUpdate}
+                />
+              ))}
+            </>
+          )}
+
+          {/* ✅ All other notes */}
+          <h3 style={{ margin: "15px 0 5px" }}>All Notes</h3>
+          {otherNotes.map((note) => (
             <NoteCard
               key={note._id}
               note={note}

@@ -94,6 +94,18 @@ const s = {
     border: "1px solid #e5e3dc",
     background: "transparent",
     fontSize: "13px",
+    color: "var(--text)",
+    cursor: "pointer",
+    transition: "all 0.15s",
+    textDecoration: "none",
+    display: "inline-block",
+  },
+  dleBtn: {
+    padding: "5px 14px",
+    borderRadius: "8px",
+    border: "1px solid #e5e3dc",
+    background: "transparent",
+    fontSize: "13px",
     color: "#6b6960",
     cursor: "pointer",
     transition: "all 0.15s",
@@ -166,6 +178,16 @@ export default function NoteCard({ note, onVoteUpdate }) {
     year: "numeric",
   });
 
+  const handleDelete = async () => {
+    try {
+      await api.delete(`/notes/${note._id}`);
+      alert("Note deleted");
+      window.location.reload(); // simple refresh
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div style={s.card}>
       <div style={s.voteCol}>
@@ -222,6 +244,14 @@ export default function NoteCard({ note, onVoteUpdate }) {
           Download
         </a>
       </div>
+      {user && user._id === localNote.uploadedBy?._id && (
+        <button style={s.dleBtn} onClick={handleDelete}>
+          Delete
+        </button>
+      )}
+      {/* <button style={s.dlBtn} onClick={handleDelete}>
+        Delete
+      </button> */}
     </div>
   );
 }

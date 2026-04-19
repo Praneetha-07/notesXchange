@@ -203,7 +203,7 @@ export default function UploadPage() {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setSuccess("Note uploaded successfully!");
-      setTimeout(() => navigate("/"), 1500);
+      setTimeout(() => navigate("/browse"), 1500);
     } catch (err) {
       setError(
         err.response?.data?.message || "Upload failed. Please try again.",
