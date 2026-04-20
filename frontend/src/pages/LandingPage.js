@@ -39,8 +39,6 @@ const styles = {
     alignItems: "center",
     textAlign: "center",
     padding: "20px",
-    // background: "#f5f4f0",
-    background: "var(--surface)",
   },
   title: {
     fontSize: "40px",
@@ -51,7 +49,6 @@ const styles = {
   description: {
     fontSize: "18px",
     maxWidth: "500px",
-    // color: "#6b6960",
     color: "var(--text)",
     marginBottom: "20px",
   },
