@@ -7,6 +7,7 @@ import BrowsePage from "./pages/BrowsePage";
 import UploadPage from "./pages/UploadPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import CreateNote from "./pages/createNote";
 import { useAuth } from "./context/AuthContext";
 
 const PrivateRoute = ({ children }) => {
@@ -26,6 +27,14 @@ const AppRoutes = () => (
         element={
           <PrivateRoute>
             <UploadPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/create"
+        element={
+          <PrivateRoute>
+            <CreateNote />
           </PrivateRoute>
         }
       />

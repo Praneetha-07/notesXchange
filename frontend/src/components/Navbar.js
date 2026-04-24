@@ -134,6 +134,11 @@ export default function Navbar() {
             Upload
           </Link>
         )}
+        {user && (
+          <Link to="/create" style={styles.link(path === "/create")}>
+            Write Note
+          </Link>
+        )}
       </div>
 
       <div style={styles.right}>

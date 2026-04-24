@@ -188,6 +188,14 @@ export default function NoteCard({ note, onVoteUpdate }) {
     }
   };
 
+  const downloadTextNote = (note) => {
+    const blob = new Blob([note.content], { type: "text/html" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${note.title}.html`;
+    link.click();
+  };
+
   return (
     <div style={s.card}>
       <div style={s.voteCol}>
@@ -235,14 +243,26 @@ export default function NoteCard({ note, onVoteUpdate }) {
       </div>
 
       <div style={s.actions}>
-        <a
+        {/* <a
           href={`http://localhost:5001${localNote.fileUrl}`}
           target="_blank"
           rel="noreferrer"
           style={s.dlBtn}
         >
           Download
-        </a>
+        </a> */}
+        <button
+          style={s.dlBtn}
+          onClick={() => {
+            if (note.noteType === "file") {
+              window.open(`http://localhost:5001${note.fileUrl}`);
+            } else {
+              downloadTextNote(note);
+            }
+          }}
+        >
+          Download
+        </button>
       </div>
       {user && user._id === localNote.uploadedBy?._id && (
         <button style={s.dleBtn} onClick={handleDelete}>
