@@ -24,7 +24,7 @@ notes-exchange/
     │   ├── api/            # Axios instance
     │   ├── components/     # Navbar, NoteCard
     │   ├── context/        # AuthContext (global user state)
-    │   ├── pages/          # BrowsePage, UploadPage, LoginPage, RegisterPage
+    │   ├── pages/          # BrowsePage, UploadPage, LoginPage, RegisterPage, createNote, noteFeed, viewNote
     │   ├── App.js          # Routes
     │   ├── index.js
     │   └── index.css
