@@ -38,7 +38,7 @@ function CreateNote() {
       });
 
       alert("Note published!");
-      navigate("/browse"); // ✅ VERY IMPORTANT
+      navigate("/browse");
     } catch (err) {
       alert("Error publishing note");
     }

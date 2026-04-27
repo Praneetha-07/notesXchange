@@ -93,47 +93,14 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// POST /api/notes — upload new note (protected)
-// router.post("/", protect, upload.single("file"), async (req, res) => {
-//   try {
-//     if (!req.file) return res.status(400).json({ message: "File is required" });
-
-//     const { title, subject, subjectCode, semester, branch } = req.body;
-
-//     if (!title || !subject || !subjectCode || !semester || !branch) {
-//       return res.status(400).json({ message: "All fields are required" });
-//     }
-
-//     // const fileType = req.file.mimetype === "application/pdf" ? "pdf" : "image";
-//     // const fileUrl = `/uploads/${req.file.filename}`;
-
-//     const note = await Note.create({
-//       title,
-//       subject,
-//       subjectCode,
-//       semester,
-//       branch,
-//       fileUrl,
-//       fileType,
-//       uploadedBy: req.user._id,
-//     });
-
-//     await note.populate("uploadedBy", "name branch");
-//     res.status(201).json(note);
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// });
 router.post("/", protect, upload.single("file"), async (req, res) => {
   try {
     const { title, subject, subjectCode, semester, branch, content } = req.body;
 
-    // ✅ Common validation
     if (!title || !subject || !subjectCode || !semester || !branch) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // ✅ Base object
     let noteData = {
       title,
       subject,
@@ -143,7 +110,6 @@ router.post("/", protect, upload.single("file"), async (req, res) => {
       uploadedBy: req.user._id,
     };
 
-    // 📁 FILE NOTE
     if (req.file) {
       const fileType =
         req.file.mimetype === "application/pdf" ? "pdf" : "image";
@@ -151,16 +117,10 @@ router.post("/", protect, upload.single("file"), async (req, res) => {
       noteData.fileUrl = `/uploads/${req.file.filename}`;
       noteData.fileType = fileType;
       noteData.noteType = "file";
-    }
-
-    // ✍️ TEXT NOTE
-    else if (content) {
+    } else if (content) {
       noteData.content = content;
       noteData.noteType = "text";
-    }
-
-    // ❌ Neither provided
-    else {
+    } else {
       return res.status(400).json({ message: "File or content is required" });
     }
 
