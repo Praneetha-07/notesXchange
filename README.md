@@ -1,15 +1,29 @@
-# NotesXchange — Student Notes Exchange Portal
+# 📚 NotesXchange — Student Notes Exchange Portal
 
-A full-stack MERN web app for students to upload, browse, search, and vote on study materials.
+A full-stack MERN web application that allows students to upload, browse, search, and vote on academic study materials efficiently.
+
+🎯 Built to simplify peer-to-peer knowledge sharing among students.
 
 ---
+## 🎥 Project Videos
+
+### 🎬 Project Overview
+🔗 [https://your-overview-video-link](https://drive.google.com/file/d/1RbTw2y5oYKo2E9vvFlbgiXS5G49pwDAC/view?usp=sharing)
+
+### 💻 Frontend Code Explanation
+🔗 [https://your-frontend-video-link](https://drive.google.com/file/d/1qN-rHZK9Cg2I6B1VSc1_vGkl_slEgbNs/view?usp=sharing)
+
+### ⚙️ Backend Code Explanation
+🔗[ https://your-backend-video-link](https://drive.google.com/file/d/1B084vhywRfjYjxMj82rN2ArCk0cjwtWF/view?usp=sharing)
+
+___
 
 ## Project Structure
 
 ```
-notes-exchange/
+notesXchange/
 ├── backend/
-│   ├── models/         # Mongoose schemas (User, Note, Vote)
+│   ├── models/         # Mongoose schemas (User, Note, Vote, Custnote)
 │   ├── routes/         # Express routes (auth, notes, votes)
 │   ├── middleware/     # JWT auth + Multer file upload
 │   ├── uploads/        # Uploaded files stored here
@@ -24,7 +38,7 @@ notes-exchange/
     │   ├── api/            # Axios instance
     │   ├── components/     # Navbar, NoteCard
     │   ├── context/        # AuthContext (global user state)
-    │   ├── pages/          # BrowsePage, UploadPage, LoginPage, RegisterPage, createNote, noteFeed, viewNote
+    │   ├── pages/          # BrowsePage, UploadPage, LoginPage, RegisterPage, createNote, noteFeed, viewNote, LandingPage
     │   ├── App.js          # Routes
     │   ├── index.js
     │   └── index.css
